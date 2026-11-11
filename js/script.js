@@ -326,7 +326,7 @@
       if (!modal.hidden) closeModal();
       else if (!lightbox.hidden) closeLightbox();
       else if (navLinks.classList.contains("open")) setMenu(false);
-      else if (megaItem.classList.contains("open")) { setMega(false); megaToggle.focus(); }
+      else if (megaItem.classList.contains("open")) { setMega(false); megaItem.classList.add("suppress"); megaToggle.focus(); }
     }
     if (!lightbox.hidden) {
       if (e.key === "ArrowRight") showLightbox(doorIndex + 1);

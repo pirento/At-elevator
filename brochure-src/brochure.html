@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>A T Elevator — Company Brochure</title>
+<style>
+/* A4 print brochure. Same tokens as the website (css/style.css). Built by tools/build_brochure.py */
+@font-face { font-family: "Manrope"; font-weight: 500; src: url(fonts/manrope-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 600; src: url(fonts/manrope-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 700; src: url(fonts/manrope-latin-700-normal.woff2) format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 800; src: url(fonts/manrope-latin-800-normal.woff2) format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 400; src: url(fonts/inter-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 500; src: url(fonts/inter-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url(fonts/inter-latin-600-normal.woff2) format("woff2"); }
+
+:root {
+  --navy: #172E52; --navy-2: #10233F; --ink: #0B1A30;
+  --blue: #2186F3; --blue-on-dark: #5AAEFF; --blue-50: #EAF3FC;
+  --surface: #F5F8FB; --text: #17243A; --muted: #5B6B80; --muted-on-dark: #A8B9D2;
+  --line: #E3E8EF; --line-strong: #CBD5E1; --line-dark: rgba(255,255,255,.14);
+  --head: "Manrope", sans-serif; --body: "Inter", sans-serif;
+  --m: 18mm; /* page margin */
+}
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: var(--body); font-size: 9.5pt; line-height: 1.55; color: var(--text); background: #fff; }
+img { display: block; }
+h1, h2, h3, h4 { font-family: var(--head); color: var(--navy-2); letter-spacing: -0.02em; line-height: 1.15; }
+.hl { color: var(--blue); }
+.i { width: 5mm; height: 5mm; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+ul { list-style: none; }
+
+.page { position: relative; width: 210mm; height: 297mm; overflow: hidden; page-break-after: always; break-after: page; padding: var(--m) var(--m) 0; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+.label { font-family: var(--head); font-size: 8pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+.title { margin-top: 3mm; font-size: 24pt; font-weight: 800; letter-spacing: -0.03em; }
+.intro { margin-top: 3.5mm; font-size: 10.5pt; color: var(--muted); max-width: 140mm; }
+.head-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10mm; }
+.head-row .intro { max-width: 70mm; margin-top: 0; font-size: 9.5pt; }
+
+/* running footer */
+.foot { position: absolute; left: var(--m); right: var(--m); bottom: 10mm; display: flex; justify-content: space-between; align-items: center; padding-top: 3mm; border-top: 0.3mm solid var(--line); font-size: 7.5pt; color: var(--muted); }
+.foot img { height: 4.2mm; }
+.foot b { font-family: var(--head); color: var(--navy); font-variant-numeric: tabular-nums; }
+
+/* photo frames: studio shots sit on their own colour, scenes fill the frame */
+.ph { position: relative; overflow: hidden; border-radius: 2mm; background: var(--bg, var(--surface)); }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ph.studio img { object-fit: contain; padding: 2mm;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-composite: source-in; mask-composite: intersect; }
+
+/* ================= 1. COVER ================= */
+.cover { padding: 0; background: #fff; }
+.cover-top { display: flex; justify-content: space-between; align-items: center; padding: 15mm var(--m) 0; }
+.cover-top img { height: 9mm; }
+.cover-top span { font-family: var(--head); font-size: 8pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.cover-head { padding: 16mm var(--m) 0; }
+.cover-head .eyebrow { display: flex; align-items: center; gap: 3mm; font-family: var(--head); font-size: 8.5pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--navy); }
+.cover-head .eyebrow::before { content: ""; width: 9mm; height: 0.6mm; background: var(--blue); }
+.cover-head h1 { margin-top: 6mm; font-size: 44pt; font-weight: 800; line-height: 1.02; letter-spacing: -0.045em; }
+.cover-head p { margin-top: 5mm; font-size: 12pt; color: var(--muted); }
+.cover-photos { position: absolute; left: var(--m); right: var(--m); top: 128mm; height: 112mm; display: grid; grid-template-columns: 1.15fr 1fr; gap: 4mm; }
+.cover-photos .ph { height: 100%; border-radius: 3mm; }
+.cover-photos figcaption { position: absolute; left: 3mm; bottom: 3mm; padding: 1.2mm 2.6mm; border-radius: 1.4mm; background: rgba(11, 26, 48, .78); color: #fff; font-size: 7.5pt; font-weight: 500; }
+.cover-band { position: absolute; left: 0; right: 0; bottom: 0; height: 45mm; background: var(--navy-2); color: #fff; padding: 9mm var(--m) 0; display: grid; grid-template-columns: 1.2fr 1fr; gap: 10mm; }
+.cover-band .what { font-family: var(--head); font-size: 13pt; font-weight: 700; line-height: 1.35; }
+.cover-band .what span { color: var(--blue-on-dark); }
+.cover-band .venture { margin-top: 3mm; font-size: 8pt; color: var(--muted-on-dark); }
+.cover-band .contacts { font-size: 8.5pt; color: var(--muted-on-dark); display: grid; gap: 1.6mm; align-content: start; }
+.cover-band .contacts b { color: #fff; font-family: var(--head); font-size: 10pt; font-variant-numeric: tabular-nums; }
+
+/* ================= 2. ABOUT ================= */
+.about-grid { margin-top: 8mm; display: grid; grid-template-columns: 1fr 66mm; gap: 9mm; }
+.about-text p + p { margin-top: 3mm; }
+.about-text p { font-size: 9.6pt; color: var(--text); }
+.promise { margin-top: 6mm; padding: 5mm 6mm; background: var(--surface); border-radius: 2mm; }
+.promise p { font-family: var(--head); font-size: 12pt; font-weight: 700; color: var(--navy); line-height: 1.35; letter-spacing: -0.01em; }
+.promise span { display: block; margin-top: 2mm; font-size: 8pt; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.about-photo { height: 68mm; }
+.facts { margin-top: 4mm; display: grid; grid-template-columns: 1fr 1fr; border-top: 0.4mm solid var(--navy); }
+.facts div { padding: 2.6mm 0 0; }
+.facts dt { font-size: 7.5pt; color: var(--muted); }
+.facts dd { font-family: var(--head); font-size: 13pt; font-weight: 800; color: var(--navy); font-variant-numeric: tabular-nums; }
+.subhead { margin-top: 6mm; padding-top: 4mm; border-top: 0.3mm solid var(--line); font-family: var(--head); font-size: 8pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.design-grid { margin-top: 4mm; display: grid; grid-template-columns: 1fr 1fr; gap: 5mm 9mm; }
+.design-grid h3 { font-size: 11pt; display: flex; align-items: center; gap: 2.4mm; }
+.design-grid h3 .i { color: var(--blue); width: 4.6mm; height: 4.6mm; }
+.design-grid p { margin-top: 1.4mm; font-size: 9pt; color: var(--muted); }
+.services-row { margin-top: 4mm; display: grid; grid-template-columns: repeat(4, 1fr); border: 0.3mm solid var(--line); border-radius: 2mm; }
+.services-row div { padding: 3.4mm 3.4mm; }
+.services-row div + div { border-left: 0.3mm solid var(--line); }
+.services-row .i { color: var(--blue); }
+.services-row h4 { margin-top: 2mm; font-size: 9.5pt; }
+.services-row p { margin-top: 1mm; font-size: 8pt; color: var(--muted); line-height: 1.45; }
+
+/* ================= 3. TYPES ================= */
+.types { margin-top: 6mm; display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 6mm; }
+.type { border: 0.3mm solid var(--line); border-radius: 2mm; overflow: hidden; }
+.type .ph { height: 41mm; border-radius: 0; }
+.type-body { padding: 3.4mm 4mm 3.8mm; border-top: 0.3mm solid var(--line); }
+.type-tag { font-size: 7pt; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+.type h3 { margin-top: 0.8mm; font-size: 12pt; }
+.type p { margin-top: 1mm; font-size: 8.5pt; color: var(--muted); line-height: 1.45; }
+
+/* ================= 4. PARKING + MACHINES ================= */
+.parking { margin-top: 7mm; display: grid; grid-template-columns: 96mm 1fr; gap: 7mm; align-items: center; }
+.parking .ph { height: 86mm; }
+.parking h2 { font-size: 18pt; font-weight: 800; }
+.parking p { margin-top: 2.4mm; color: var(--muted); }
+.ticks { margin-top: 4mm; display: grid; gap: 0; }
+.ticks li { display: flex; align-items: center; gap: 2.4mm; padding: 2.2mm 0; border-top: 0.3mm solid var(--line); font-weight: 500; color: var(--navy); font-size: 9.5pt; }
+.ticks .i { width: 4.2mm; height: 4.2mm; color: var(--blue); stroke-width: 2.4; }
+.tech { position: absolute; left: 0; right: 0; bottom: 0; height: 150mm; background: var(--navy-2); color: #fff; padding: 11mm var(--m) 0; }
+.tech .label { color: var(--blue-on-dark); }
+.tech .title { color: #fff; font-size: 20pt; }
+.tech .title .hl { color: var(--blue-on-dark); }
+.machines { margin-top: 6mm; display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; }
+.machines .ph { height: 46mm; }
+.machines h3 { margin-top: 3.4mm; color: #fff; font-size: 12pt; }
+.machines p { margin-top: 1.2mm; color: var(--muted-on-dark); font-size: 9pt; }
+.mrl-note { margin-top: 6mm; padding-top: 4mm; border-top: 0.3mm solid var(--line-dark); display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; }
+.mrl-note h3 { color: #fff; font-size: 11pt; }
+.mrl-note p { margin-top: 1.2mm; color: var(--muted-on-dark); font-size: 9pt; }
+.tech .foot { border-top-color: var(--line-dark); color: var(--muted-on-dark); }
+.tech .foot b { color: #fff; }
+
+/* ================= 5. DOORS ================= */
+.doors { margin-top: 7mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm 5mm; }
+.door .ph { height: 60mm; }
+.door figcaption { margin-top: 2mm; font-family: var(--head); font-size: 9.5pt; font-weight: 700; color: var(--navy); line-height: 1.25; }
+.door figcaption span { display: block; font-family: var(--body); font-size: 7pt; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6mm; }
+
+/* ================= 6. CABINS + SHAFT ================= */
+.cabins { margin-top: 7mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+.cabins .ph { height: 66mm; }
+.cabins figcaption { margin-top: 2mm; font-family: var(--head); font-size: 9.5pt; font-weight: 700; color: var(--navy); }
+.shaft-head { margin-top: 11mm; }
+.shaft-head h2 { font-size: 16pt; font-weight: 800; }
+table.spec { margin-top: 4mm; width: 100%; border-collapse: collapse; font-size: 8.5pt; font-variant-numeric: tabular-nums; }
+table.spec th { background: var(--navy); color: #fff; font-family: var(--head); font-weight: 700; font-size: 7.5pt; letter-spacing: .02em; text-align: left; padding: 2.4mm 2.4mm; line-height: 1.25; }
+table.spec th small { display: block; font-weight: 500; color: var(--muted-on-dark); font-size: 6.8pt; }
+table.spec td { padding: 2.1mm 2.4mm; border-bottom: 0.3mm solid var(--line); }
+table.spec tr:nth-child(even) td { background: var(--surface); }
+table.spec td:first-child { font-family: var(--head); font-weight: 700; color: var(--navy); }
+.note { margin-top: 3mm; display: flex; gap: 2mm; align-items: flex-start; font-size: 8pt; color: var(--muted); }
+.note .i { width: 4mm; height: 4mm; color: var(--blue); margin-top: 0.3mm; }
+
+/* ================= 7. SAFETY ================= */
+.safety { margin-top: 7mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 9mm; }
+.safety li { display: grid; grid-template-columns: 6mm 1fr; gap: 3mm; padding: 4.6mm 0; border-top: 0.3mm solid var(--line); }
+.safety .i { width: 5.4mm; height: 5.4mm; color: var(--blue); }
+.safety h3 { font-size: 10pt; }
+.safety p { margin-top: 0.8mm; font-size: 8.4pt; color: var(--muted); line-height: 1.45; }
+
+/* ================= 8. AMC + CONTACT ================= */
+.amc-grid { margin-top: 7mm; display: grid; grid-template-columns: 1fr 1fr; gap: 9mm; }
+.amc-grid .ticks li { font-size: 9.5pt; }
+table.cmp { width: 100%; border-collapse: separate; border-spacing: 0; border: 0.3mm solid var(--line); border-radius: 2mm; overflow: hidden; font-size: 8.5pt; }
+table.cmp th, table.cmp td { padding: 2.4mm 2.6mm; border-bottom: 0.3mm solid var(--line); text-align: center; }
+table.cmp tr:last-child th, table.cmp tr:last-child td { border-bottom: 0; }
+table.cmp thead th { background: var(--navy); color: #fff; font-family: var(--head); font-weight: 700; border-bottom: 0; }
+table.cmp thead th:nth-child(2) { background: var(--blue); }
+table.cmp tbody th { text-align: left; font-weight: 500; color: var(--navy); }
+table.cmp td { font-weight: 600; color: var(--navy); }
+table.cmp td.m { color: var(--muted); font-weight: 500; }
+table.cmp .i { width: 4.2mm; height: 4.2mm; color: var(--blue); stroke-width: 2.4; vertical-align: middle; }
+.cmp-note { margin-top: 2.4mm; font-size: 8pt; color: var(--muted); }
+.contact { position: absolute; left: 0; right: 0; bottom: 0; height: 128mm; background: var(--navy-2); color: #fff; padding: 12mm var(--m) 0; }
+.contact .label { color: var(--blue-on-dark); }
+.contact h2 { margin-top: 3mm; color: #fff; font-size: 24pt; font-weight: 800; letter-spacing: -0.03em; }
+.contact h2 .hl { color: var(--blue-on-dark); }
+.people { margin-top: 8mm; display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 7mm; }
+.people > div { padding-top: 4mm; border-top: 0.3mm solid var(--line-dark); }
+.people span { display: block; font-size: 8pt; color: var(--muted-on-dark); }
+.people strong { display: block; margin-top: 0.6mm; font-family: var(--head); font-size: 11.5pt; }
+.people b { display: flex; align-items: center; gap: 2mm; margin-top: 2mm; font-family: var(--head); font-size: 12pt; color: #fff; font-variant-numeric: tabular-nums; }
+.people b .i { width: 4.2mm; height: 4.2mm; color: var(--blue-on-dark); }
+.people p { margin-top: 1mm; font-size: 9.5pt; color: #DCE6F2; }
+.wa { margin-top: 8mm; display: inline-flex; align-items: center; gap: 2.6mm; padding: 3mm 5mm; border-radius: 2mm; background: #1FA855; font-family: var(--head); font-weight: 700; font-size: 10pt; }
+.wa .i { width: 4.6mm; height: 4.6mm; }
+.back-logo { position: absolute; left: var(--m); bottom: 22mm; padding: 3mm 4.4mm; background: #fff; border-radius: 2mm; }
+.back-logo img { height: 7mm; }
+.legal { position: absolute; left: var(--m); right: var(--m); bottom: 9mm; display: flex; justify-content: space-between; gap: 6mm; font-size: 7pt; color: var(--muted-on-dark); padding-top: 3mm; border-top: 0.3mm solid var(--line-dark); }
+.legal p:first-child { color: #DCE6F2; font-weight: 500; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!--SPRITE-->
+</svg>
+
+<!-- ============ 1. COVER ============ -->
+<section class="page cover">
+  <div class="cover-top">
+    <img src="../assets/images/logo.png" alt="A T Elevator" />
+    <span>Company Brochure</span>
+  </div>
+  <div class="cover-head">
+    <p class="eyebrow">Elevators · Installation · AMC</p>
+    <h1>Right Lift.<br /><span class="hl">Rising Service.</span></h1>
+    <p>Where every customer is a priority.</p>
+  </div>
+  <div class="cover-photos">
+    <figure class="ph"><img src="../assets/images/hero-elevator.jpg" alt="" /><figcaption>Passenger elevator</figcaption></figure>
+    <figure class="ph"><img src="../assets/images/home-elevator.jpg" alt="" /><figcaption>Home elevator</figcaption></figure>
+  </div>
+  <div class="cover-band">
+    <div>
+      <p class="what">Supply, installation, maintenance and modernisation of <span>passenger, home, glass, hydraulic and parking elevators.</span></p>
+      <p class="venture">A venture of Venturecore Solutions Private Limited · Lucknow, Uttar Pradesh</p>
+    </div>
+    <div class="contacts">
+      <span><b>+91 87950 02145</b> · Aman Tiwari, Venture Head</span>
+      <span><b>+91 63873 75176</b> · Tushar Yadav, Operations</span>
+      <span>Omaxe LIG Tower No. 2, Arjungang, Lucknow</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. ABOUT ============ -->
+<section class="page">
+  <p class="label">About Us</p>
+  <h2 class="title">Engineering Better <span class="hl">Vertical Mobility.</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>A T Elevator delivers safe, reliable lifts and dependable after-sales service. With a skilled team and hands-on site experience, we handle every job from survey to handover.</p>
+      <p>We supply, install, service and modernise passenger, home, glass, hydraulic and parking elevators. Our focus on quality, reliability and safety builds the trust of building owners and end-users alike, and our AMC and after-sales team keeps every lift running smoothly.</p>
+      <p>A T Elevator believes in serving its customers and the local community with honest work and quick support.</p>
+      <div class="promise">
+        <p>“Right lift for every building, installed with care and maintained with commitment.”</p>
+        <span>The A T Elevator Promise</span>
+      </div>
+    </div>
+    <div>
+      <figure class="ph about-photo"><img src="../assets/images/cabin-designer.jpg" alt="" /></figure>
+      <dl class="facts">
+        <div><dt>Elevator types</dt><dd>7</dd></div>
+        <div><dt>Door options</dt><dd>9</dd></div>
+        <div><dt>Passengers</dt><dd>5–20</dd></div>
+        <div><dt>Rated load</dt><dd>304–1360 kg</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <p class="subhead">What sets our elevators apart</p>
+  <div class="design-grid">
+    <div><h3><svg class="i"><use href="#i-sliders"/></svg>Exceptional designs</h3><p>Versatility and a smooth user experience are the hallmark of A T Elevator design. Our range is created to suit diverse buildings with a sense of contemporary elegance.</p></div>
+    <div><h3><svg class="i"><use href="#i-gauge"/></svg>High speed &amp; large capacity</h3><p>Solutions for busy buildings, including options for new and existing sites where a conventional lift pit is difficult to provide.</p></div>
+    <div><h3><svg class="i"><use href="#i-layers"/></svg>Machine room-less elevators</h3><p>Space and energy-efficient designs that need no separate machine room, giving greater design freedom and more usable space.</p></div>
+    <div><h3><svg class="i"><use href="#i-home"/></svg>Home elevators</h3><p>Elevator solutions for small spaces within private houses, with the same trusted quality and performance.</p></div>
+  </div>
+
+  <p class="subhead">What we do</p>
+  <div class="services-row">
+    <div><svg class="i"><use href="#i-elevator"/></svg><h4>New Installation</h4><p>Site survey, planning, supply, installation and commissioning.</p></div>
+    <div><svg class="i"><use href="#i-calendar"/></svg><h4>Maintenance (AMC)</h4><p>Preventive maintenance, inspections and breakdown support.</p></div>
+    <div><svg class="i"><use href="#i-cpu"/></svg><h4>Modernisation</h4><p>Upgrade drives, controllers and door systems.</p></div>
+    <div><svg class="i"><use href="#i-wrench"/></svg><h4>Repair &amp; Spares</h4><p>Troubleshooting, repair and spare parts support.</p></div>
+  </div>
+  <div class="foot"><img src="../assets/images/logo.png" alt="" /><span>Right Lift. Rising Service.</span><b>02</b></div>
+</section>
+
+<!-- ============ 3. TYPES ============ -->
+<section class="page">
+  <div class="head-row">
+    <div><p class="label">Types of Elevator</p><h2 class="title">Explore Our <span class="hl">Elevator Solutions.</span></h2></div>
+    <p class="intro">A wide range of designs for homes, offices, hospitals, malls and industry.</p>
+  </div>
+  <div class="types">
+    <article class="type"><figure class="ph studio" style="--bg:#ebebeb"><img src="../assets/images/passenger-elevator.jpg" alt="" /></figure><div class="type-body"><p class="type-tag">Residential · Commercial</p><h3>Passenger Elevator</h3><p>Smooth, dependable everyday lifts for apartments, offices, hospitals and commercial buildings.</p></div></article>
+    <article class="type"><figure class="ph studio" style="--bg:#ededed"><img src="../assets/images/glass-elevator.jpg" alt="" /></figure><div class="type-body"><p class="type-tag">Showrooms · Malls</p><h3>Passenger Glass Elevator</h3><p>Glass-panelled cabin that keeps spaces open and bright and adds a premium look.</p></div></article>
+    <article class="type"><figure class="ph studio" style="--bg:#eeeeec"><img src="../assets/images/capsule-elevator.jpg" alt="" /></figure><div class="type-body"><p class="type-tag">Statement Design</p><h3>Capsule Elevator</h3><p>Rounded, panoramic cabin designed to be the centrepiece of a lobby or atrium.</p></div></article>
+    <article class="type"><figure class="ph"><img src="../assets/images/home-elevator.jpg" alt="" style="object-position: center 40%" /></figure><div class="type-body"><p class="type-tag">Private Homes</p><h3>Home Elevator</h3><p>Compact lifts for small spaces in private houses, with the same trusted quality.</p></div></article>
+    <article class="type"><figure class="ph studio" style="--bg:#e6e9eb"><img src="../assets/images/hydraulic-elevator.jpg" alt="" /></figure><div class="type-body"><p class="type-tag">Goods · Industrial</p><h3>Hydraulic Platform</h3><p>Sturdy platform lift for moving goods and materials between floors.</p></div></article>
+    <article class="type"><figure class="ph studio" style="--bg:#eaeae8"><img src="../assets/images/cantilever-elevator.jpg" alt="" /></figure><div class="type-body"><p class="type-tag">Space-Saving</p><h3>Cantilever Elevator System</h3><p>Side-mounted arrangement for shafts where a conventional layout does not fit.</p></div></article>
+  </div>
+  <div class="foot"><img src="../assets/images/logo.png" alt="" /><span>Right Lift. Rising Service.</span><b>03</b></div>
+</section>
+
+<!-- ============ 4. PARKING + MACHINES ============ -->
+<section class="page">
+  <p class="label">Parking Elevator</p>
+  <div class="parking">
+    <figure class="ph"><img src="../assets/images/parking-elevator.jpg" alt="" /></figure>
+    <div>
+      <h2>Car Stack / Parking Elevator</h2>
+      <p>Park more vehicles in the same footprint with a sturdy car stack lift.</p>
+      <ul class="ticks">
+        <li><svg class="i"><use href="#i-check"/></svg>Residential area parking</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Commercial building parking</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Office parking</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tech">
+    <p class="label">Machines &amp; Technology</p>
+    <h2 class="title">Reliable Technology. <span class="hl">Smooth Performance.</span></h2>
+    <div class="machines">
+      <div><figure class="ph studio" style="--bg:#edefec"><img src="../assets/images/machine-geared.jpg" alt="" /></figure><h3>Geared Machine</h3><p>Strong, time-tested and cost-effective for low and mid-rise buildings.</p></div>
+      <div><figure class="ph studio" style="--bg:#ececeb"><img src="../assets/images/machine-gearless.jpg" alt="" /></figure><h3>Gearless Machine</h3><p>Quieter, smoother and energy-efficient, suitable for MRL and higher-speed applications.</p></div>
+    </div>
+    <div class="mrl-note">
+      <div><h3>Machine Room-Less (MRL)</h3><p>The machine fits inside the shaft, so no separate machine room is needed. More usable space and greater design freedom.</p></div>
+      <div><h3>Choosing the right drive</h3><p>Building height, traffic and available space decide the best machine. We recommend the right option during the site survey.</p></div>
+    </div>
+    <div class="foot"><span>Right Lift. Rising Service.</span><b>04</b></div>
+  </div>
+</section>
+
+<!-- ============ 5. DOORS ============ -->
+<section class="page">
+  <div class="head-row">
+    <div><p class="label">Elevator Door Types</p><h2 class="title">Designed Around <span class="hl">Your Building.</span></h2></div>
+    <p class="intro">Nine landing door options, automatic and manual.</p>
+  </div>
+  <div class="doors">
+    <figure class="door"><div class="ph"><img src="../assets/images/door-ss.jpg" alt="" /></div><figcaption><span>Automatic</span>Stainless Steel Door</figcaption></figure>
+    <figure class="door"><div class="ph"><img src="../assets/images/door-ss-glass.jpg" alt="" /></div><figcaption><span>Automatic</span>Stainless Steel Glass Door</figcaption></figure>
+    <figure class="door"><div class="ph"><img src="../assets/images/door-ss-telescopic.jpg" alt="" /></div><figcaption><span>Automatic</span>S.S. Telescopic Door</figcaption></figure>
+    <figure class="door"><div class="ph"><img src="../assets/images/door-ms-powder.jpg" alt="" /></div><figcaption><span>Automatic</span>M.S. Powder Coated Door</figcaption></figure>
+    <figure class="door"><div class="ph"><img src="../assets/images/door-home-swing.jpg" alt="" /></div><figcaption><span>Home Elevator</span>Swing Door</figcaption></figure>
+    <figure class="door"><div class="ph"><img src="../assets/images/door-ms-telescopic.jpg" alt="" /></div><figcaption><span>Manual</span>M.S. Telescopic Door</figcaption></figure>
+    <figure class="door"><div class="ph"><img src="../assets/images/door-ms-swing.jpg" alt="" /></div><figcaption><span>Manual</span>M.S. Swing Door</figcaption></figure>
+    <figure class="door"><div class="ph"><img src="../assets/images/door-ifd.jpg" alt="" /></div><figcaption><span>Manual</span>IFD Door</figcaption></figure>
+    <figure class="door"><div class="ph"><img src="../assets/images/door-collapsible.jpg" alt="" /></div><figcaption><span>Manual</span>Collapsible Door</figcaption></figure>
+  </div>
+  <div class="foot"><img src="../assets/images/logo.png" alt="" /><span>Right Lift. Rising Service.</span><b>05</b></div>
+</section>
+
+<!-- ============ 6. CABINS + SHAFT ============ -->
+<section class="page">
+  <p class="label">Optional Cabin Designs</p>
+  <h2 class="title">Choose Your <span class="hl">Cabin Finish.</span></h2>
+  <div class="cabins">
+    <figure><div class="ph"><img src="../assets/images/cabin-hairline.jpg" alt="" /></div><figcaption>Standard Steel Hairline Finish</figcaption></figure>
+    <figure><div class="ph"><img src="../assets/images/cabin-designer.jpg" alt="" /></div><figcaption>Steel Hairline &amp; Designer Finish</figcaption></figure>
+    <figure><div class="ph"><img src="../assets/images/cabin-paint.jpg" alt="" /></div><figcaption>Standard Steel Paint Finish</figcaption></figure>
+  </div>
+
+  <div class="shaft-head">
+    <p class="label">Shaft Sizes</p>
+    <h2>Indicative Shaft Sizes</h2>
+  </div>
+  <table class="spec">
+    <thead><tr><th>Passengers</th><th>Load<small>kg</small></th><th>Hoistway<small>mm</small></th><th>Opening width<small>mm</small></th><th>Machine room<small>mm</small></th><th>Pit depth<small>mm</small></th><th>Overhead<small>mm</small></th></tr></thead>
+    <tbody>
+      <tr><td>5</td><td>304</td><td>1500 × 1550</td><td>650</td><td>1600 × 3500</td><td>1500</td><td>4200</td></tr>
+      <tr><td>6</td><td>408</td><td>1600 × 1525</td><td>700</td><td>1600 × 3500</td><td>1500</td><td>4200</td></tr>
+      <tr><td>6</td><td>408</td><td>1800 × 1550</td><td>800</td><td>1600 × 3500</td><td>1600</td><td>4500</td></tr>
+      <tr><td>8</td><td>544</td><td>1750 × 1800</td><td>700</td><td>1800 × 3500</td><td>1600</td><td>4500</td></tr>
+      <tr><td>8</td><td>544</td><td>1900 × 1800</td><td>800</td><td>1800 × 3500</td><td>1600</td><td>4500</td></tr>
+      <tr><td>10</td><td>680</td><td>1900 × 2000</td><td>900</td><td>1800 × 3500</td><td>1600</td><td>4700</td></tr>
+      <tr><td>10</td><td>680</td><td>1900 × 1850</td><td>900</td><td>1800 × 3500</td><td>1600</td><td>4700</td></tr>
+      <tr><td>13</td><td>884</td><td>1700 × 2000</td><td>900</td><td>2000 × 3500</td><td>1600</td><td>4800</td></tr>
+      <tr><td>15</td><td>1020</td><td>1900 × 3000</td><td>1000</td><td>2000 × 3500</td><td>1600</td><td>4800</td></tr>
+      <tr><td>20</td><td>1360</td><td>2000 × 3000</td><td>1000</td><td>2000 × 3500</td><td>1700</td><td>4800</td></tr>
+    </tbody>
+  </table>
+  <p class="note"><svg class="i"><use href="#i-info"/></svg>Indicative values for planning only. Car size, speed and final dimensions are confirmed after a site survey.</p>
+  <div class="foot"><img src="../assets/images/logo.png" alt="" /><span>Right Lift. Rising Service.</span><b>06</b></div>
+</section>
+
+<!-- ============ 7. SAFETY ============ -->
+<section class="page">
+  <div class="head-row">
+    <div><p class="label">Safety Features</p><h2 class="title">Safety Is Not Optional. <span class="hl">It's Our Priority.</span></h2></div>
+  </div>
+  <p class="intro">Safety features available across the A T Elevator range. The exact list depends on the model and configuration you choose and is confirmed in your quotation.</p>
+  <ul class="safety">
+    <li><svg class="i"><use href="#i-scan"/></svg><div><h3>Infrared Light Curtain</h3><p>Full-height crossing light beams detect the smallest obstruction in the door path and stop the doors from closing.</p></div></li>
+    <li><svg class="i"><use href="#i-weight"/></svg><div><h3>Overload Sensor</h3><p>Audio-visual indication on overload; doors stay open until the excess load is removed.</p></div></li>
+    <li><svg class="i"><use href="#i-sill"/></svg><div><h3>Slot-less Door Sills</h3><p>Groove-less stainless steel sills match the car and leave no slots for dust to collect and obstruct the doors.</p></div></li>
+    <li><svg class="i"><use href="#i-bulb"/></svg><div><h3>Car Emergency Light &amp; Fan</h3><p>Switches automatically to battery backup on power failure; the fan keeps running for at least 20 minutes.</p></div></li>
+    <li><svg class="i"><use href="#i-bell"/></svg><div><h3>Emergency Alarm &amp; Push-to-Talk</h3><p>Self-charging, battery-backed alarm and intercom link to the lobby during an emergency or power failure.</p></div></li>
+    <li><svg class="i"><use href="#i-lifebuoy"/></svg><div><h3>Emergency Rescue Button</h3><p>On power failure, passengers can use the emergency rescue button on the car panel.</p></div></li>
+    <li><svg class="i"><use href="#i-octagon"/></svg><div><h3>Over-travel Protection</h3><p>Power to the controller and motor is cut and the brake applied if the car moves beyond the top or bottom floor.</p></div></li>
+    <li><svg class="i"><use href="#i-gauge"/></svg><div><h3>Overspeed Governor</h3><p>If the car exceeds rated speed downward, the governor trips the safety gear onto the guide rails and stops the car.</p></div></li>
+    <li><svg class="i"><use href="#i-box"/></svg><div><h3>PU Buffers</h3><p>Long-lasting, weather-resistant polyurethane buffers for dependable protection at the pit.</p></div></li>
+    <li><svg class="i"><use href="#i-moon"/></svg><div><h3>Car Fan Auto-Sleep</h3><p>The car fan switches off automatically when the lift is idle, saving energy.</p></div></li>
+    <li><svg class="i"><use href="#i-volume"/></svg><div><h3>Voice Announcer with Music</h3><p>Announces next floor, direction and door status with a natural electronic voice.</p></div></li>
+    <li><svg class="i"><use href="#i-zap"/></svg><div><h3>V3F Drive &amp; Door Operator</h3><p>Microprocessor-based variable voltage, variable frequency drive with encoder feedback for faster, smoother door operation and shorter waiting time.</p></div></li>
+  </ul>
+  <div class="foot"><img src="../assets/images/logo.png" alt="" /><span>Right Lift. Rising Service.</span><b>07</b></div>
+</section>
+
+<!-- ============ 8. AMC + CONTACT ============ -->
+<section class="page">
+  <p class="label">AMC &amp; After-Sales</p>
+  <h2 class="title">Your Elevator Deserves <span class="hl">Long-Term Care.</span></h2>
+  <div class="amc-grid">
+    <ul class="ticks">
+      <li><svg class="i"><use href="#i-calendar"/></svg>Preventive maintenance visits</li>
+      <li><svg class="i"><use href="#i-phone-call"/></svg>Breakdown call attendance</li>
+      <li><svg class="i"><use href="#i-droplet"/></svg>Cleaning and lubrication</li>
+      <li><svg class="i"><use href="#i-shield-check"/></svg>Safety device inspection</li>
+      <li><svg class="i"><use href="#i-package"/></svg>Spare parts support</li>
+      <li><svg class="i"><use href="#i-file"/></svg>Service reports</li>
+    </ul>
+    <div>
+      <table class="cmp">
+        <thead><tr><th></th><th>Comprehensive</th><th>Non-Comprehensive</th></tr></thead>
+        <tbody>
+          <tr><th>Maintenance visits</th><td><svg class="i"><use href="#i-check"/></svg></td><td><svg class="i"><use href="#i-check"/></svg></td></tr>
+          <tr><th>Breakdown attendance</th><td><svg class="i"><use href="#i-check"/></svg></td><td><svg class="i"><use href="#i-check"/></svg></td></tr>
+          <tr><th>Covered spare parts</th><td>Included</td><td class="m">Billed when used</td></tr>
+          <tr><th>Yearly cost</th><td>Predictable</td><td class="m">Lower contract value</td></tr>
+        </tbody>
+      </table>
+      <p class="cmp-note">Exact inclusions and pricing are shared after inspecting your elevator.</p>
+    </div>
+  </div>
+
+  <div class="contact">
+    <p class="label">Contact &amp; Free Quote</p>
+    <h2>Let's Find the <span class="hl">Right Lift</span> for Your Building.</h2>
+    <div class="people">
+      <div><span>Venture Head</span><strong>Aman Tiwari</strong><b><svg class="i"><use href="#i-phone"/></svg>+91 87950 02145</b></div>
+      <div><span>Operations</span><strong>Tushar Yadav</strong><b><svg class="i"><use href="#i-phone"/></svg>+91 63873 75176</b></div>
+      <div><span>Office</span><strong>A T Elevator</strong><p>Omaxe LIG Tower No. 2, Arjungang,<br />Lucknow – 226002, Uttar Pradesh</p></div>
+    </div>
+    <p class="wa"><svg class="i"><use href="#i-chat"/></svg>WhatsApp your enquiry: +91 87950 02145</p>
+    <div class="back-logo"><img src="../assets/images/logo.png" alt="A T Elevator" /></div>
+    <div class="legal">
+      <p>A T Elevator – A venture of Venturecore Solutions Private Limited.</p>
+      <p>Images are representative. Specifications may vary by model and site.</p>
+    </div>
+  </div>
+</section>
+</body>
+</html>

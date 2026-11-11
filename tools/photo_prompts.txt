@@ -1,0 +1,68 @@
+A T Elevator — new website photos (22)
+Use Nano Banana Pro, 2K. Save each image with the exact file name shown, then attach them in chat (or run tools/install_photos.py).
+
+1. hero-elevator.jpg   (aspect ratio 3:4)
+Interior of a modern passenger elevator cabin seen straight on from the landing with doors fully open, brushed stainless steel hairline side walls, a tall back wall of light-tinted glass, warm LED downlights in a white ceiling, polished dark granite floor, a slim car operating panel with round buttons, calm premium apartment lobby feel, empty cabin, no people. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+2. home-elevator.jpg   (aspect ratio 3:4)
+A compact home elevator with a glass-panel shaft installed in a bright double-height Indian living room of a modern villa, white walls, light wooden flooring, indoor plants, large window light, the lift car at the upper floor, elegant and residential, no people. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+3. passenger-elevator.jpg   (aspect ratio 4:5)
+A standalone modern passenger elevator car shown as a product: rectangular stainless steel hairline cabin with centre-opening doors open, interior lit with ceiling LEDs, three-quarter front view. Isolated on a seamless very light cool-grey studio background (#F2F5F9), soft floor shadow, centered, full object in frame with generous margin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+4. glass-elevator.jpg   (aspect ratio 4:5)
+A panoramic passenger glass elevator car as a product: square cabin with clear glass walls on three sides, slim brushed steel frame and handrail, LED-lit ceiling, three-quarter view. Isolated on a seamless very light cool-grey studio background (#F2F5F9), soft floor shadow, centered, full object in frame with generous margin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+5. capsule-elevator.jpg   (aspect ratio 4:5)
+A capsule-shaped panoramic elevator car as a product: rounded half-cylinder glass front, polished stainless steel top and base with LED edge lighting, three-quarter view. Isolated on a seamless very light cool-grey studio background (#F2F5F9), soft floor shadow, centered, full object in frame with generous margin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+6. hydraulic-elevator.jpg   (aspect ratio 4:5)
+A hydraulic goods platform lift as a product: heavy-duty steel platform with checker-plate floor, yellow safety side rails, a single hydraulic cylinder and guide rails, industrial grey paint, three-quarter view. Isolated on a seamless very light cool-grey studio background (#F2F5F9), soft floor shadow, centered, full object in frame with generous margin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+7. cantilever-elevator.jpg   (aspect ratio 4:5)
+A cantilever elevator system as a product: an open steel cabin frame mounted on one side to a pair of vertical guide rails, side-hung arrangement clearly visible, brushed steel cabin with glass panel, three-quarter view, engineering catalogue style. Isolated on a seamless very light cool-grey studio background (#F2F5F9), soft floor shadow, centered, full object in frame with generous margin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+8. parking-elevator.jpg   (aspect ratio 4:3)
+A two-level car stack parking lift in a clean modern residential basement garage: steel platform raised with one white sedan on top and one grey hatchback parked below, yellow safety markings, bright even lighting, no people. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+9. door-ss.jpg   (aspect ratio 3:4)
+Front elevation of a closed automatic centre-opening stainless steel elevator landing door set in a beige stone wall, brushed hairline finish, slim stainless architrave frame, polished floor, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+10. door-ss-glass.jpg   (aspect ratio 3:4)
+Front elevation of a closed automatic centre-opening stainless steel elevator landing door with a tall vision glass panel in each door leaf, slim stainless frame, set in a light stone wall, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+11. door-ss-telescopic.jpg   (aspect ratio 3:4)
+Front elevation of an automatic two-panel telescopic side-opening stainless steel elevator landing door, half open showing the two overlapping panels sliding to one side, set in a light wall, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+12. door-home-swing.jpg   (aspect ratio 3:4)
+Front elevation of a home elevator swing door: a single hinged door with a full-height glass panel in a slim powder-coated dark grey steel frame, small round handle, set in a white residential wall, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+13. door-ms-powder.jpg   (aspect ratio 3:4)
+Front elevation of a closed automatic centre-opening elevator landing door made of mild steel with a smooth light grey powder-coated finish, matching frame, set in a plain wall, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+14. door-ms-telescopic.jpg   (aspect ratio 3:4)
+Front elevation of a manual two-panel telescopic side-opening elevator landing door made of mild steel with ivory powder coating and a vertical pull handle, set in a plain wall, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+15. door-ms-swing.jpg   (aspect ratio 3:4)
+Front elevation of a manual single-leaf swing elevator landing door made of mild steel, powder-coated light grey, small rectangular vision window, lever handle, set in a plain wall, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+16. door-ifd.jpg   (aspect ratio 3:4)
+Front elevation of a manual imperforate (IFD) elevator landing door: solid steel folding door with vertical panels and no openings, powder-coated grey, set in a plain wall, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+17. door-collapsible.jpg   (aspect ratio 3:4)
+Front elevation of a manual collapsible steel grille elevator gate, criss-cross lattice pattern, painted dark grey, mounted in a simple frame in a plain wall, straight-on view. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+18. cabin-hairline.jpg   (aspect ratio 4:5)
+Interior of an elevator cabin viewed from the open door, all walls in plain brushed stainless steel hairline finish, white LED panel ceiling, grey granite floor, slim handrail on back wall, empty cabin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+19. cabin-designer.jpg   (aspect ratio 4:5)
+Interior of an elevator cabin viewed from the open door, stainless steel hairline walls with a decorative etched mirror-finish pattern panel on the back wall, perforated metal ceiling with downlights, patterned stone floor, handrail, empty cabin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+20. cabin-paint.jpg   (aspect ratio 4:5)
+Interior of an elevator cabin viewed from the open door, walls in smooth painted steel panels in light ivory colour, simple white LED ceiling, vinyl floor, handrail, clean and economical, empty cabin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+21. machine-geared.jpg   (aspect ratio 4:3)
+An elevator geared traction machine as an industrial product: electric motor coupled to a worm gearbox with a grooved steel traction sheave and brake, painted dark green and grey, three-quarter view. Isolated on a seamless very light cool-grey studio background (#F2F5F9), soft floor shadow, centered, full object in frame with generous margin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
+
+22. machine-gearless.jpg   (aspect ratio 4:3)
+A compact gearless permanent-magnet elevator traction machine as an industrial product: flat disc-shaped motor with a grooved traction sheave in front and an integrated brake, dark grey housing, three-quarter view. Isolated on a seamless very light cool-grey studio background (#F2F5F9), soft floor shadow, centered, full object in frame with generous margin. Professional architectural product photography, photorealistic, soft even daylight, true-to-life stainless steel and glass reflections, crisp detail, neutral colour grading with cool tones, no text, no logos, no watermarks, no brand names.
